@@ -19,14 +19,11 @@ class KeypadEnteredPasswordStore {
 
   get userInput => _storedList;
 
-  void dispose(){
-    _controller.close();
-  }
+  void dispose(){_controller.close();}
 
-  void evaluate(){
-    print("EVALUATING");
+  bool evaluatePassword(){
+    return _storedList.toString() == SAVED_PASSWORD.toString();
   }
-
 
   factory KeypadEnteredPasswordStore() {
     return _keypadEnteredPasswordStore;

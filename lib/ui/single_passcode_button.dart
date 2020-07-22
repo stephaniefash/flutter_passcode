@@ -13,6 +13,7 @@ class SinglePassCodeButton extends StatefulWidget {
 }
 
 class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
+  bool isAccessGranted = false;
   KeypadEnteredPasswordStore passwordStore = KeypadEnteredPasswordStore();
 
   @override
@@ -49,7 +50,10 @@ class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
     );
   }
 
-  _storePressedValue(){
+  _storePressedValue() {
     passwordStore.addNewlyEnteredNumber(widget.number);
+    setState(() {
+      isAccessGranted = passwordStore.evaluatePassword();
+    });
   }
 }
