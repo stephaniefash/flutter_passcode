@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_passcode/keypard_entered_password_store.dart';
 
 class SinglePassCodeButton extends StatefulWidget {
   final String number;
@@ -12,6 +13,8 @@ class SinglePassCodeButton extends StatefulWidget {
 }
 
 class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
+
+  KeypadEnteredPasswordStore passwordStore = KeypadEnteredPasswordStore();
 
   @override
   void initState() {
@@ -35,8 +38,15 @@ class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
         ),
         borderSide:
             BorderSide(color: Colors.white, style: BorderStyle.solid, width: 1),
-        onPressed: () {},
+        onPressed: () {
+        _storePressedValue();
+        },
       ),
     );
   }
+
+  _storePressedValue(){
+    passwordStore.addNewlyEnteredNumber(widget.number);
+  }
+
 }
