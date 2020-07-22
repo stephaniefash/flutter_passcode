@@ -13,15 +13,19 @@ class SinglePassCodeButton extends StatefulWidget {
 }
 
 class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
-
   KeypadEnteredPasswordStore passwordStore = KeypadEnteredPasswordStore();
 
   @override
   void initState() {
-
     SystemChrome.setEnabledSystemUIOverlays([]);
     super.initState();
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,7 +43,7 @@ class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
         borderSide:
             BorderSide(color: Colors.white, style: BorderStyle.solid, width: 1),
         onPressed: () {
-        _storePressedValue();
+          _storePressedValue();
         },
       ),
     );
@@ -48,5 +52,4 @@ class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
   _storePressedValue(){
     passwordStore.addNewlyEnteredNumber(widget.number);
   }
-
 }
