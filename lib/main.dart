@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_passcode/ui/key_pad.dart';
+import 'package:flutter_passcode/ui/single_registed_input_circle.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,7 +35,21 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [KeyPad()],
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SingleRegisteredInputCircle(),
+                SingleRegisteredInputCircle(),
+                SingleRegisteredInputCircle(),
+                SingleRegisteredInputCircle(),
+              ],
+            ),
+          ),
+          KeyPad()
+        ],
       ),
     );
   }
