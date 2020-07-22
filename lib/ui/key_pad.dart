@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_passcode/local_storage.dart';
 import 'package:flutter_passcode/ui/single_passcode_button.dart';
-import 'package:flutter_passcode/ui/single_registed_input_circle.dart';
 
 class KeyPad extends StatefulWidget {
   @override
@@ -8,6 +8,13 @@ class KeyPad extends StatefulWidget {
 }
 
 class _KeyPadState extends State<KeyPad> {
+  LocalStorage localStorage = new LocalStorage();
+
+  @override
+  void initState() {
+    localStorage.savePasswordList();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(

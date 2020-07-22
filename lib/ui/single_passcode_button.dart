@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_passcode/keypard_entered_password_store.dart';
+import 'package:flutter_passcode/keypad_entered_password_store.dart';
 
 class SinglePassCodeButton extends StatefulWidget {
   final String number;
@@ -13,8 +13,8 @@ class SinglePassCodeButton extends StatefulWidget {
 }
 
 class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
-  bool isAccessGranted = false;
   KeypadEnteredPasswordStore passwordStore = KeypadEnteredPasswordStore();
+  bool isAccessGranted = false;
 
   @override
   void initState() {
@@ -43,17 +43,15 @@ class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
         ),
         borderSide:
             BorderSide(color: Colors.white, style: BorderStyle.solid, width: 1),
-        onPressed: () {
-          _storePressedValue();
-        },
+        onPressed: _storePressedValue
       ),
     );
   }
 
   _storePressedValue() {
     passwordStore.addNewlyEnteredNumber(widget.number);
-    setState(() {
-      isAccessGranted = passwordStore.evaluatePassword();
+    setState(() async {
+      isAccessGranted = await passwordStore.evaluatePassword();
     });
   }
 }

@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter_passcode/local_storage.dart';
+
 class KeypadEnteredPasswordStore {
+
 
   static const List<String> SAVED_PASSWORD = ["1", "2","3","5"];
   static const int PASSWORD_LIMIT = 4;
@@ -21,13 +24,12 @@ class KeypadEnteredPasswordStore {
 
   void dispose(){_controller.close();}
 
-  bool evaluatePassword(){
-    return _storedList.toString() == SAVED_PASSWORD.toString();
+  Future<bool> evaluatePassword() async {
+  List<String> storedValue = await new LocalStorage().getStoredPasswordAsList();
+    return _storedList.toString() == storedValue.toString();
   }
 
-  factory KeypadEnteredPasswordStore() {
-    return _keypadEnteredPasswordStore;
-  }
+  factory KeypadEnteredPasswordStore() {return _keypadEnteredPasswordStore;}
 
   KeypadEnteredPasswordStore._internal();
 }
