@@ -38,14 +38,14 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.all(30),
+            padding: const EdgeInsets.all(40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SingleRegisteredInputCircle(),
-                SingleRegisteredInputCircle(),
-                SingleRegisteredInputCircle(),
-                SingleRegisteredInputCircle(),
+                SingleRegisteredInputCircle(true),
+                SingleRegisteredInputCircle(false),
+                SingleRegisteredInputCircle(false),
+                SingleRegisteredInputCircle(false),
               ],
             ),
           ),

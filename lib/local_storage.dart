@@ -9,7 +9,7 @@ class LocalStorage {
   KeypadEnteredPasswordStore passwordStore = KeypadEnteredPasswordStore();
 
   Future<bool> savePasswordList() async {
-    return  prefs.then((value) => value.setStringList(storedPasswordKey, KeypadEnteredPasswordStore.SAVED_PASSWORD;));
+    return  prefs.then((value) => value.setStringList(storedPasswordKey, KeypadEnteredPasswordStore.SAVED_PASSWORD));
   }
 
   getStoredPasswordAsList() async {

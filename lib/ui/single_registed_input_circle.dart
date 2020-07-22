@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 
 class SingleRegisteredInputCircle extends StatefulWidget {
 
+  bool isRegistered;
+
+  SingleRegisteredInputCircle(this.isRegistered);
+
   @override
   _SingleRegisteredInputCircleState createState() =>
       _SingleRegisteredInputCircleState();
@@ -22,7 +26,7 @@ class _SingleRegisteredInputCircleState
             color: Colors.white,
             width: 1.0,
           ),
-          color: Colors.black),
+          color: widget.isRegistered ? Colors.white : Colors.black),
     );
   }
 }

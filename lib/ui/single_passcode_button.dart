@@ -32,26 +32,29 @@ class _SinglePassCodeButtonState extends State<SinglePassCodeButton> {
     return Container(
       margin: EdgeInsets.only(bottom: 24),
       child: new OutlineButton(
-        shape: CircleBorder(side: BorderSide(width: 300)),
-        textColor: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Text(
-            widget.number,
-            style: TextStyle(fontSize: 40, fontWeight: FontWeight.w100),
+          shape: CircleBorder(side: BorderSide(width: 300)),
+          textColor: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text(
+              widget.number,
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w100),
+            ),
           ),
-        ),
-        borderSide:
-            BorderSide(color: Colors.white, style: BorderStyle.solid, width: 1),
-        onPressed: _storePressedValue
-      ),
+          borderSide: BorderSide(
+              color: Colors.white, style: BorderStyle.solid, width: 1),
+          onPressed: _storePressedValue),
     );
   }
 
-  _storePressedValue() {
+  _storePressedValue() async {
     passwordStore.addNewlyEnteredNumber(widget.number);
-    setState(() async {
-      isAccessGranted = await passwordStore.evaluatePassword();
-    });
+    if (passwordStore.userInput.length == 4) {
+      bool isValidPassword  = await passwordStore.evaluatePassword();
+      setState(() {
+        isAccessGranted = isValidPassword;
+        print(isAccessGranted);
+      });
+    }
   }
 }
